@@ -1,0 +1,50 @@
+name: Arduino CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  compile-sketches:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arduino-platform:
+          - "arduino:avr"
+          - "arduino:samd"
+          - "arduino:megaavr"
+        include:
+          - arduino-platform: "arduino:avr"
+            fqbn: "arduino:avr:uno"
+          - arduino-platform: "arduino:samd"
+            fqbn: "arduino:samd:mkr1000"
+          - arduino-platform: "arduino:megaavr"
+            fqbn: "arduino:megaavr:uno2018"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile examples
+        uses: arduino/compile-sketches@v1
+        with:
+          fqbn: ${{ matrix.fqbn }}
+          platforms: |
+            - name: ${{ matrix.arduino-platform }}
+          sketch-paths: |
+            - examples/BasicUsage
+            - examples/AdvancedUsage
+          enable-deltas-report: true
+          enable-warnings-report: true
+          sketches-report-path: sketches-reports
+          cli-compile-flags: |
+            - --warnings="all"
+
+      - name: Upload sketches report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sketches-report-${{ matrix.arduino-platform }}
+          path: sketches-reports

@@ -1,0 +1,14 @@
+╔═══════════════════════════════════════════════════════════════╗
+║                     WIRING DIAGRAM PLACEHOLDER                 ║
+║                                                                 ║
+║  Replace this text file with an actual wiring.png image        ║
+║  showing how to connect your hardware.                         ║
+║                                                                 ║
+║  Arduino Pin 13 ────────[LED]────────[220Ω]──────── GND       ║
+║                                                                 ║
+║  For a professional diagram, use tools like:                   ║
+║  - Fritzing (fritzing.org)                                     ║
+║  - Circuit Diagram (circuit-diagram.org)                       ║
+║  - TinkerCAD Circuits (tinkercad.com)                          ║
+║                                                                 ║
+╚═══════════════════════════════════════════════════════════════╝
