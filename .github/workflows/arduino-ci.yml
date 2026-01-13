@@ -18,10 +18,13 @@ jobs:
         include:
           - arduino-platform: "arduino:avr"
             fqbn: "arduino:avr:uno"
+            artifact-name: "arduino-avr"
           - arduino-platform: "arduino:samd"
             fqbn: "arduino:samd:mkr1000"
+            artifact-name: "arduino-samd"
           - arduino-platform: "arduino:megaavr"
             fqbn: "arduino:megaavr:uno2018"
+            artifact-name: "arduino-megaavr"
 
     steps:
       - name: Checkout repository
@@ -46,5 +49,6 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: sketches-report-${{ matrix.arduino-platform }}
+          name: sketches-report-${{ matrix.artifact-name }}
           path: sketches-reports
+          if-no-files-found: warn
