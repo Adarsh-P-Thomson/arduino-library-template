@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional Arduino library template with CI/CD automation, GitHub Actions testing, and Arduino Library Manager compliance. Create production-ready Arduino libraries in minutes.">
+    <meta name="keywords" content="Arduino, Arduino library, Arduino template, GitHub Actions, CI/CD, embedded systems, IoT, Arduino IDE, library development, open source">
+    <meta name="author" content="Adarsh P Thomson">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://adarshpthomson.me/arduino-library-template/">
+    <meta property="og:title" content="Arduino Library Template - Professional Development Framework">
+    <meta property="og:description" content="Create professional Arduino libraries with automated CI/CD testing and Library Manager compliance">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://adarshpthomson.me/arduino-library-template/">
+    <meta property="twitter:title" content="Arduino Library Template">
+    <meta property="twitter:description" content="Professional Arduino library template with CI/CD and automated setup">
+    
+    <title>Arduino Library Template | Professional Development Framework</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .hero h1 {
+            font-size: 3.5em;
+            margin: 0 0 20px 0;
+            font-weight: 700;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5em;
+            margin: 0 0 15px 0;
+            opacity: 0.95;
+        }
+        
+        .hero p {
+            font-size: 1.2em;
+            margin: 0 0 40px 0;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 16px 40px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 10px;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+        
+        .stats {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .stats h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #333;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .stat-item {
+            padding: 20px;
+        }
+        
+        .stat-item .icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+        }
+        
+        .stat-item h3 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .stat-item p {
+            color: #666;
+            font-size: 1em;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .feature {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        .feature h3 {
+            color: #667eea;
+            margin: 0 0 15px 0;
+            font-size: 1.4em;
+        }
+        
+        .feature p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        .quick-start {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .quick-start h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        .quick-start ol {
+            margin-left: 25px;
+            font-size: 1.1em;
+            line-height: 2;
+        }
+        
+        .quick-start li {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #667eea;
+            font-size: 0.95em;
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .cta h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .badges {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .badges img {
+            margin: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2em;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Arduino Library Template</h1>
+            <div class="subtitle">Professional Development Framework</div>
+            <p>Create production-ready Arduino libraries in minutes, not hours</p>
+            <a href="https://github.com/Adarsh-P-Thomson/arduino-library-template" class="btn">View on GitHub</a>
+            <a href="https://github.com/Adarsh-P-Thomson/arduino-library-template/generate" class="btn btn-secondary">Use This Template</a>
+        </div>
+
+        <div class="badges">
+            <img src="https://github.com/Adarsh-P-Thomson/arduino-library-template/workflows/Arduino%20CI/badge.svg" alt="Arduino CI">
+            <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT">
+            <img src="https://img.shields.io/github/release/Adarsh-P-Thomson/arduino-library-template.svg" alt="GitHub release">
+        </div>
+
+        <div class="stats">
+            <h2>Why Choose This Template?</h2>
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <div class="icon">✅</div>
+                    <h3>Library Manager Ready</h3>
+                    <p>Fully compliant with Arduino Library Specification</p>
+                </div>
+                <div class="stat-item">
+                    <div class="icon">⚡</div>
+                    <h3>5 Minute Setup</h3>
+                    <p>Automated scripts handle everything</p>
+                </div>
+                <div class="stat-item">
+                    <div class="icon">🤖</div>
+                    <h3>CI/CD Included</h3>
+                    <p>GitHub Actions tests multiple architectures</p>
+                </div>
+                <div class="stat-item">
+                    <div class="icon">📚</div>
+                    <h3>Complete Docs</h3>
+                    <p>Guides, examples, and references included</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3>Perfect for Beginners</h3>
+                <p>Clear folder structure, comprehensive documentation, and working examples make it easy to start your first Arduino library. No prior library development experience needed.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>Automated Setup</h3>
+                <p>PowerShell and Bash scripts automatically rename files, update metadata, and configure your library in seconds. One command does everything.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>Professional Structure</h3>
+                <p>Follows Arduino Library Specification with proper <code>src/</code>, <code>examples/</code>, and <code>extras/</code> directories. Pass validation the first time.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>CI/CD Ready</h3>
+                <p>GitHub Actions workflow automatically tests your library on AVR, SAMD, and megaAVR architectures. Catch issues before users do.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>Multi-Architecture Support</h3>
+                <p>Test your library across multiple Arduino boards automatically. Ensure compatibility with Uno, Mega, MKR, and more.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>Open Source & Free</h3>
+                <p>MIT licensed - use it, modify it, learn from it. No restrictions, no costs, no strings attached.</p>
+            </div>
+        </div>
+
+        <div class="quick-start">
+            <h2>Quick Start</h2>
+            <ol>
+                <li>Click <strong>"Use this template"</strong> button on GitHub to create your repository</li>
+                <li>Clone your new repository to your computer</li>
+                <li>Run the setup script: <code>./setup-library.ps1</code> (Windows) or <code>./setup-library.sh</code> (Linux/Mac)</li>
+                <li>Implement your library code in the <code>src/</code> directory</li>
+                <li>Update examples in <code>examples/</code> to demonstrate your library</li>
+                <li>Push to GitHub - CI runs automatically to validate your code</li>
+                <li>Create a release tag and submit to Arduino Library Manager</li>
+            </ol>
+        </div>
+
+        <div class="cta">
+            <h2>Ready to Build Your Library?</h2>
+            <p>Join developers worldwide using this template to create professional Arduino libraries</p>
+            <a href="https://github.com/Adarsh-P-Thomson/arduino-library-template/generate" class="btn">Create Your Library Now</a>
+        </div>
+
+        <footer>
+            <p>Created by <a href="https://github.com/Adarsh-P-Thomson">Adarsh P Thomson</a></p>
+            <p>Licensed under <a href="https://opensource.org/licenses/MIT">MIT License</a></p>
+            <p><a href="https://github.com/Adarsh-P-Thomson/arduino-library-template">GitHub</a> • 
+               <a href="https://github.com/Adarsh-P-Thomson/arduino-library-template/blob/main/docs/QUICK_REFERENCE.md">Documentation</a> • 
+               <a href="https://github.com/Adarsh-P-Thomson/arduino-library-template/issues">Support</a></p>
+        </footer>
+    </div>
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareSourceCode",
+      "name": "Arduino Library Template",
+      "description": "Professional Arduino library template with CI/CD automation, GitHub Actions testing, and Arduino Library Manager compliance. Create production-ready Arduino libraries in minutes.",
+      "author": {
+        "@type": "Person",
+        "name": "Adarsh P Thomson",
+        "email": "adarshpthomson7@gmail.com"
+      },
+      "programmingLanguage": "C++",
+      "runtimePlatform": "Arduino",
+      "codeRepository": "https://github.com/Adarsh-P-Thomson/arduino-library-template",
+      "license": "https://opensource.org/licenses/MIT",
+      "datePublished": "2026-01-22",
+      "dateModified": "2026-01-22",
+      "version": "0.1.0",
+      "applicationCategory": "DeveloperApplication",
+      "keywords": "Arduino, Arduino library, Arduino template, GitHub Actions, CI/CD, embedded systems, IoT, Arduino IDE, library development, open source, Arduino Library Manager",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</body>
+</html>
