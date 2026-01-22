@@ -1,6 +1,6 @@
-# Contributing to LibraryName
+# Contributing to Arduino Library Template
 
-Thank you for considering contributing to this Arduino library!
+Thank you for considering contributing to this Arduino library template!
 
 ## Code of Conduct
 

@@ -1,6 +1,22 @@
 # Arduino Library Template
 
+[![Arduino CI](https://github.com/Adarsh-P-Thomson/arduino-library-template/workflows/Arduino%20CI/badge.svg)](https://github.com/Adarsh-P-Thomson/arduino-library-template/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub release](https://img.shields.io/github/release/Adarsh-P-Thomson/arduino-library-template.svg)](https://github.com/Adarsh-P-Thomson/arduino-library-template/releases)
+
 A professional, ready-to-use template for creating Arduino libraries that comply with the [Arduino Library Specification](https://arduino.github.io/arduino-cli/latest/library-specification/).
+
+> 🚀 **Click "Use this template"** at the top of this repository to create your own Arduino library in seconds!
+
+## 📚 Documentation
+
+- **[Quick Reference](docs/QUICK_REFERENCE.md)** - Command cheat sheet
+- **[Developer Guide](docs/DEVELOPER.md)** - Technical documentation
+- **[Examples Guide](examples/README.md)** - Example sketches documentation
+- **[Contributing](CONTRIBUTING.md)** - Contribution guidelines
+- **[Changelog](CHANGELOG.md)** - Version history
+
+---
 
 ## What is this?
 
@@ -64,8 +80,8 @@ arduino-library-template/
 Clone this repository:
 
 ```bash
-git clone https://github.com/yourusername/LibraryName.git
-cd LibraryName
+git clone https://github.com/Adarsh-P-Thomson/arduino-library-template.git
+cd arduino-library-template
 ```
 
 ## Usage
@@ -94,14 +110,87 @@ void loop() {
 
 See the `examples/AdvancedUsage/` folder for more complex usage patterns.
 
+## Quick Start Guide for Template Users
+
+### Automated Setup (Recommended)
+
+Run the setup script to automatically configure your library:
+
+**Windows (PowerShell):**
+```powershell
+./setup-library.ps1
+```
+
+**Linux/Mac:**
+```bash
+chmod +x setup-library.sh
+./setup-library.sh
+```
+
+The script will:
+- Rename all files from `LibraryName` to your library name
+- Update `library.properties` with your details
+- Update all code references
+- Update examples and documentation
+
+### Manual Setup
+
+### 1️⃣ Create Your Library
+
+Click the green **"Use this template"** button at the top of this page, or clone manually:
+
+```bash
+git clone https://github.com/Adarsh-P-Thomson/arduino-library-template.git MyLibrary
+cd MyLibrary
+```
+
+### 2️⃣ Rename Files
+
+Replace `LibraryName` with your actual library name:
+- `src/LibraryName.h` → `src/MyLibrary.h`
+- `src/LibraryName.cpp` → `src/MyLibrary.cpp`
+- Update all class names and includes
+
+### 3️⃣ Update Metadata
+
+Edit [`library.properties`](library.properties) with your details:
+```properties
+name=MyLibrary
+author=Your Name <your@email.com>
+sentence=Short description of your library
+```
+
+### 4️⃣ Write Your Code
+
+Implement your library functionality in the `src/` folder.
+
+### 5️⃣ Test Locally
+
+1. Zip your library folder
+2. Arduino IDE → Sketch → Include Library → Add .ZIP Library
+3. Compile and test examples
+
+### 6️⃣ Publish
+
+1. Create a release: `git tag v0.1.0 && git push --tags`
+2. Submit to [Arduino Library Manager](https://github.com/arduino/library-registry)
+
+---
+
 ## How to Use This Template
 
 Follow these steps to create your own library:
 
-### Step 1: Clone and Rename
+### Step 1: Use This Template
 
+**Option A: Use GitHub's "Use this template" button** (Recommended)
+1. Click the green "Use this template" button at the top of this repository
+2. Create your new repository with your library name
+3. Clone your new repository
+
+**Option B: Manual clone**
 ```bash
-git clone https://github.com/yourusername/arduino-library-template.git MyNewLibrary
+git clone https://github.com/Adarsh-P-Thomson/arduino-library-template.git MyNewLibrary
 cd MyNewLibrary
 rm -rf .git
 git init
@@ -178,11 +267,50 @@ git push -u origin main
 
 ### Step 10: Publish to Arduino Library Manager
 
-1. Create a GitHub release with a version tag (e.g., `v0.1.0`)
-2. Submit your library to Arduino Library Manager:
+#### Prerequisites
+- ✅ Library is on GitHub
+- ✅ At least one release tag exists (e.g., `v0.1.0`)
+- ✅ `library.properties` is valid
+- ✅ Examples compile successfully
+- ✅ CI tests pass
+
+#### Publishing Steps
+
+1. **Create a GitHub Release:**
+   ```bash
+   git tag -a v0.1.0 -m "Initial release"
+   git push origin v0.1.0
+   ```
+   Then create a release on GitHub with release notes.
+
+2. **Submit to Arduino Library Manager:**
    - Fork https://github.com/arduino/library-registry
-   - Add your repository URL to `repositories.txt`
-   - Create a pull request
+   - Edit `repositories.txt`
+   - Add your repository URL: `https://github.com/yourusername/YourLibrary`
+   - Create a Pull Request
+   - Wait for review (usually 1-7 days)
+
+3. **After Acceptance:**
+   - Your library will appear in Arduino IDE's Library Manager
+   - Users can install via: Sketch → Include Library → Manage Libraries
+   - Arduino Library Manager checks for new releases automatically
+
+#### Versioning Guidelines
+
+Follow [Semantic Versioning](https://semver.org/):
+- **MAJOR** version (1.0.0): Incompatible API changes
+- **MINOR** version (0.1.0): New features, backwards compatible
+- **PATCH** version (0.0.1): Bug fixes, backwards compatible
+
+#### Release Checklist
+
+Before each release:
+- [ ] Update version in `library.properties`
+- [ ] Update CHANGELOG section in README
+- [ ] Test all examples on hardware
+- [ ] Verify CI passes
+- [ ] Create Git tag matching version
+- [ ] Write clear release notes
 
 ## API Reference
 
@@ -213,12 +341,50 @@ Deactivates the device (sets pin LOW).
 
 ## Requirements
 
-- Arduino IDE 1.5.0 or higher
-- Compatible with all Arduino architectures
+- Arduino IDE 1.5.0 or higher (recommended: 2.0+)
+- Compatible with all Arduino architectures by default
+- No external dependencies (pure Arduino library)
+
+## Testing Your Library
+
+### Local Testing
+
+1. **Zip your library:**
+   ```bash
+   # From parent directory
+   zip -r MyLibrary.zip MyLibrary/
+   ```
+
+2. **Install in Arduino IDE:**
+   - Sketch → Include Library → Add .ZIP Library
+   - Select your ZIP file
+   - Restart Arduino IDE
+
+3. **Verify examples compile:**
+   - File → Examples → MyLibrary → BasicUsage
+   - Click Verify (✓) button
+   - Should compile without errors
+
+4. **Test on hardware:**
+   - Upload to your Arduino board
+   - Monitor Serial output if applicable
+   - Verify expected behavior
+
+### Continuous Integration
+
+This template includes GitHub Actions CI that automatically:
+- ✅ Compiles examples on multiple Arduino boards
+- ✅ Tests on AVR, SAMD, and megaAVR architectures
+- ✅ Generates compilation reports
+- ✅ Validates library structure
+
+View your CI results at: `https://github.com/yourusername/YourLibrary/actions`
 
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+For technical details, see [Developer Documentation](docs/DEVELOPER.md).
 
 ## License
 
@@ -226,22 +392,59 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Authors
 
-- **Your Name** - Initial template
+- **Adarsh P Thomson** - *Initial template creator*
 
-## Acknowledgments
-
-- Arduino community
-- Contributors and users of this template
+When using this template for your own library, replace this section with your own details.
 
 ## Support
 
-- Issues: https://github.com/yourusername/LibraryName/issues
-- Documentation: https://github.com/yourusername/LibraryName/wiki
-- Arduino Forum: https://forum.arduino.cc/
+- **Issues:** https://github.com/Adarsh-P-Thomson/arduino-library-template/issues
+- **Discussions:** https://github.com/Adarsh-P-Thomson/arduino-library-template/discussions
+- **Arduino Forum:** https://forum.arduino.cc/
+- **Documentation:** [Arduino Library Specification](https://arduino.github.io/arduino-cli/latest/library-specification/)
+
+## Troubleshooting
+
+### Common Issues
+
+**❌ "Library not found" when compiling**
+- Ensure library folder name matches `name` in `library.properties`
+- Restart Arduino IDE after installing
+- Check that library is in the correct location: `~/Documents/Arduino/libraries/`
+
+**❌ "Multiple libraries found"**
+- Remove duplicate library installations
+- Check both user and system library directories
+- Use unique library names
+
+**❌ CI workflow fails**
+- Check that examples compile locally first
+- Verify `library.properties` syntax
+- Ensure all `#include` statements are correct
+- Review workflow logs for specific errors
+
+**❌ Library Manager rejects submission**
+- Must have at least one release tag
+- `library.properties` must be valid
+- Repository must be public
+- Follow naming conventions (no spaces in library name)
+
+### Getting Help
+
+1. Check existing [Issues](https://github.com/Adarsh-P-Thomson/arduino-library-template/issues)
+2. Read the [Arduino Library Specification](https://arduino.github.io/arduino-cli/latest/library-specification/)
+3. Ask on [Arduino Forum](https://forum.arduino.cc/)
+4. Open a new issue with details
 
 ## Changelog
 
-### v0.1.0 (Initial Release)
-- Basic library structure
-- Example sketches
-- CI/CD integration
+### v0.1.0 (2026-01-22)
+- ✨ Initial template release
+- ✅ Complete Arduino Library Manager structure
+- ✅ GitHub Actions CI/CD workflow
+- ✅ Example sketches (Basic and Advanced)
+- ✅ Automated setup scripts (PowerShell and Bash)
+- ✅ Comprehensive documentation
+- ✅ MIT License
+- ✅ Valid `library.properties` configuration
+- ✅ Multi-architecture support (AVR, SAMD, megaAVR)

@@ -1,0 +1,37 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Force batch scripts to always use CRLF line endings
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Force bash scripts to always use LF line endings
+*.sh text eol=lf
+
+# Arduino files
+*.ino text
+*.h text
+*.cpp text
+*.c text
+
+# Documentation
+*.md text
+*.txt text
+
+# Configuration files
+*.json text
+*.yml text
+*.yaml text
+*.properties text
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.hex binary
+*.elf binary
+*.a binary
+*.o binary
